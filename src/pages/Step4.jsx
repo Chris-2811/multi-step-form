@@ -96,14 +96,14 @@ function Step4() {
     <div className="myContainer h-full">
       <Card>
         {/* Form */}
-        <div className="lg:pl-[6.25rem] w-full md:pl-10 md:pr-6 md:pt-10 md:pb-4 flex flex-col justify-between h-full ">
+        <div className="lg:pl-[6.25rem] lg:pr-[5.25rem] w-full md:pl-10 md:pr-6 md:pt-10 md:pb-4 flex flex-col justify-between h-full ">
           <div className="lg:w-[450px]">
             <h1>Finishing up</h1>
             <p className="text-body mb-[1.25rem] lg:mb-[2.1875rem]">
               Double-check everything looks OK before confirming.
             </p>
             <form onSubmit={handleSubmit} id="stepForm">
-              <div className="bg-magnolia p-4 rounded-[10px] lg:pt-4 lg:pb-6 lg:px-6">
+              <div className="bg-magnolia  p-4 rounded-[10px] lg:pt-4 lg:pb-6 lg:px-6">
                 <div className="flex items-center justify-between border-b pb-3">
                   <div>
                     <h2 className="text-sm lg:text-base font-medium capitalize text-marine-blue">

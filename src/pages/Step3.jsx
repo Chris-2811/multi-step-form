@@ -162,9 +162,7 @@ function Step3() {
                           <p className="text-cool-gray text-sm">{plan.text}</p>
                         </div>
                       </div>
-                      <p className="text-purplish-blue">
-                        +{formData.subscription ? plan.priceYear : plan.price}
-                      </p>
+                      <p className="text-purplish-blue">+{formData.price}</p>
                     </label>
                   </div>
                 ))}
