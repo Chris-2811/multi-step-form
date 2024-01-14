@@ -66,8 +66,14 @@ function Step1() {
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem('formData'));
-    if (data) {
+    if (data && data.email && data.name && data.phone) {
       setFormData(data);
+    } else {
+      setFormData({
+        email: '',
+        name: '',
+        phone: '',
+      });
     }
   }, []);
 

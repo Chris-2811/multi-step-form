@@ -20,21 +20,21 @@ function Step3() {
     {
       id: 'online-service',
       name: 'Online-service',
-      price: '$1/mo',
+      priceMonth: '$1/mo',
       priceYear: '$10/yr',
       text: 'Access to multiplayer games',
     },
     {
       id: 'larger-storage',
       name: 'Larger storage',
-      price: '$2/mo',
+      priceMonth: '$2/mo',
       priceYear: '$20/yr',
       text: 'Extra 1TB of cloud save',
     },
     {
       id: 'customizable-profile',
       name: 'Customizable profile',
-      price: '$2/mo',
+      priceMonth: '$2/mo',
       priceYear: '$20/yr',
       text: 'Custom theme on your profile',
     },
@@ -68,7 +68,7 @@ function Step3() {
           const selectedPlan = plans.find((plan) => plan.id === key);
           return {
             id: key,
-            price: isToggled ? selectedPlan.priceYear : selectedPlan.price,
+            price: isToggled ? selectedPlan.priceYear : selectedPlan.priceMonth,
           };
         });
     }
@@ -78,8 +78,6 @@ function Step3() {
       if (!data.subscription) {
         data.subscription = 'monthly';
       }
-
-      console.log(data);
 
       const restoredAddons = plans.reduce((acc, plan) => {
         acc[plan.id] = data.addons.some((addon) => addon.id === plan.id);
@@ -102,10 +100,12 @@ function Step3() {
           addons: Object.entries(updatedAddons)
             .filter(([key, value]) => value)
             .map(([key]) => {
-              const selectedPlan = plans.find((plan) => plan.id === key);
+              const selectedPlan = plans.find((plan) => plan.id === addon);
               return {
                 id: key,
-                price: isToggled ? selectedPlan.priceYear : selectedPlan.price,
+                price: isToggled
+                  ? selectedPlan.priceYear
+                  : selectedPlan.priceMonth,
               };
             }),
         };
@@ -119,7 +119,9 @@ function Step3() {
 
   function isPlanSelected(planId) {
     return (
-      formData.addons && formData.addons.some((addon) => addon.id === planId)
+      (formData.addons &&
+        formData.addons.some((addon) => addon.id === planId)) ||
+      false
     );
   }
 
@@ -162,7 +164,12 @@ function Step3() {
                           <p className="text-cool-gray text-sm">{plan.text}</p>
                         </div>
                       </div>
-                      <p className="text-purplish-blue">+{formData.price}</p>
+                      <p className="text-purplish-blue">
+                        +
+                        {formData.subscription === 'yearly'
+                          ? plan.priceYear
+                          : plan.priceMonth}
+                      </p>
                     </label>
                   </div>
                 ))}

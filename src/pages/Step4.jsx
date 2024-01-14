@@ -125,7 +125,10 @@ function Step4() {
                   formData.addons &&
                   formData.addons.map((item) => {
                     return (
-                      <div className="flex items-center justify-between mt-3">
+                      <div
+                        className="flex items-center justify-between mt-3"
+                        key={item.id}
+                      >
                         <p className="text-cool-gray">
                           {capitalizeFirstWord(item.id.split('-').join(' '))}
                         </p>
